@@ -1,0 +1,7 @@
+[metadata.heroku]
+  root-package = "skyforge.khazad-dum.tech/phineas/cloud_services_go"
+  go-version = "go1.10"
+  build = ["."]
+[[constraint]]
+  name = "github.com/stretchr/testify"
+  version = "1.3.0"

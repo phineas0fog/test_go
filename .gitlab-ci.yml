@@ -1,0 +1,18 @@
+image: golang:1.11-alpine
+
+stages:
+  - test
+
+before_script:
+  - mkdir -p /go/src/skyforge.khazad-dum.tech
+  - ln -s /builds/phineas /go/src/skyforge.khazad-dum.tech/phineas
+
+test_and_cover:
+  stage: test
+  script:
+    - apk add --no-cache git build-base dep
+    - ls /go/src/skyforge.khazad-dum.tech/
+    - ls /go/src/skyforge.khazad-dum.tech/phineas/
+    - cd /go/src/skyforge.khazad-dum.tech/phineas/cloud_services_go
+    - dep ensure
+    - go test $(go list ./... | grep -v /vendor/) -v -coverprofile .testCoverage.txt
